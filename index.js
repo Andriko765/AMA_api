@@ -14,8 +14,11 @@ app.use (express.json()) ;
 
 
 
-mongoose.connect(process.env.MONGODB_URI);
+const PORT =  process.env.PORT || 5000;
 
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
 
 
 
