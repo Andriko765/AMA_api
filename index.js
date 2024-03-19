@@ -6,6 +6,7 @@ const PizzaModel = require('./models/Pizza');
 const NoAlchohol = require('./models/NoAlchohol');
 const Snack = require ('./models/Snacks');
 const Alchohol = require ('./models/Alchohol');
+const HotDog = require ('./models/HotDog');
 require('dotenv').config({path:'./index.env'});
 
 const app = express();
@@ -75,4 +76,16 @@ app.get('/getSnack' , async (req,res) => {
         res.status(500).json({message:err.message})
     }
 })
+
+
+app.get('/getHotDog' , async (req,res) => {
+
+    try {
+        const data = await HotDog.find({})
+        res.json(data)
+    } catch (err) {
+        res.status(500).json({message:err.message})
+    }
+})
+
 
