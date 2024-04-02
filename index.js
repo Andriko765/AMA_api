@@ -4,6 +4,7 @@ const cors  = require ('cors');
 const CiderModel = require('./models/Cider');
 const PizzaModel = require('./models/Pizza');
 const NoAlchohol = require('./models/NoAlchohol');
+const ShotModel  = require( './models/Shots') ;
 const Snack = require ('./models/Snacks');
 const Alchohol = require ('./models/Alchohol');
 const HotDog = require ('./models/HotDog');
@@ -88,4 +89,13 @@ app.get('/getHotDog' , async (req,res) => {
     }
 })
 
+app.get('/getShot', async (req,res) =>{
+
+    try {
+        const data   = await  ShotModel.find({})
+        res.json(data)  // get only
+    } catch (err) {
+        res.status(500).json({message: err.message})
+    }
+})
 
